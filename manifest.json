@@ -1,0 +1,25 @@
+{
+  "manifest_version": 3,
+  "name": "AsuraComic Div Remover",
+  "version": "1.3",
+  "description": "Removes all Add from on AsuraComic that are fucking annoying.",
+  "permissions": ["storage"],
+  "host_permissions": ["*://asuracomic.net/*", "*://*.asuracomic.net/*"],
+  "background": {
+    "service_worker": "background.js"
+  },
+  "action": {
+    "default_popup": "popup.html",
+    "default_icon": {
+      "16": "icon.png",
+      "48": "icon.png",
+      "128": "icon.png"
+  }
+  },
+  "content_scripts": [
+    {
+      "matches": ["*://asuracomic.net/*", "*://*.asuracomic.net/*"],
+      "js": ["content.js"]
+    }
+  ]
+}
