@@ -1,0 +1,20 @@
+{
+  "id":488801,
+"name":"Crakenar",
+"username":"Crackenar","email":"crakenarbergousatorj@gmail.com",
+"created_at":"2025-02-01T00:31:30.000000Z",
+"profile_image":null,"description":"",
+"flags":
+  {"tester":false,
+    "has_custom_username":true,
+    "email_verified":true,
+    "staff":false,
+    "vip":false},
+    "premium":
+    {"active":true,
+    "expires_at":null,
+    "upgraded":null,
+    "cancelled_at":null,
+    "plan":1
+  },
+"social_accounts":{"google":{"connected":true},"discord":{"connected":false,"username":null}}}
