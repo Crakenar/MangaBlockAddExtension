@@ -16,16 +16,24 @@ function removeTargetDivs() {
   });
 }
 
+function removeHeader() {
+    const closeButton = document.querySelector('button[aria-label="Close promotion"]');
+    if (closeButton) {
+        closeButton.click();
+    }
+}
+
 // Check if the extension is enabled
 chrome.storage.local.get(["enabled"], (result) => {
   if (result.enabled) {
-      console.log("🚀 Add Remover is ACTIVE on AsuraComic!");
+      console.debug("🚀 Add Remover is ACTIVE on AsuraComic!");
       removeTargetDivs();
+      removeHeader();
 
       // Observe new elements being added
       const observer = new MutationObserver(() => removeTargetDivs());
       observer.observe(document.body, { childList: true, subtree: true });
   } else {
-      console.log("❌ Add Remover is DISABLED.");
+      console.debug("❌ Add Remover is DISABLED.");
   }
 });

@@ -1,6 +1,6 @@
 chrome.runtime.onInstalled.addListener(() => {
   chrome.storage.local.set({ enabled: false }, () => {
-      console.log("🔄 AsuraScan Add remover Extension installed: Default state is DISABLED.");
+      console.debug("🔄 AsuraScan Add remover Extension installed: Default state is DISABLED.");
   });
 });
 
