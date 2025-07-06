@@ -11,28 +11,68 @@ function removeTargetDivs() {
       const elements = document.querySelectorAll(`div.${className}`);
       if (elements.length > 0) {
           elements.forEach(div => div.remove());
-          console.log(`✅ Removed div(s) with class '${className}'`);
       }
   });
 }
 
 function removeHeader() {
-    const closeButton = document.querySelector('button[aria-label="Close promotion"]');
-    if (closeButton) {
-        closeButton.click();
+    const targetAriaLabel = [
+      "Close promotion",
+      "Close banner",
+    ];
+    targetAriaLabel.forEach(labelName => {
+        const closeButton = document.querySelector(`button[aria-label="${labelName}"]`);
+        if (closeButton) {
+            // Remove the parent div
+            const parentDiv = closeButton.parentElement;
+            if (parentDiv) {
+                parentDiv.remove();
+            }
+        }
+    });
+}
+
+function removeHeaderAds() {
+    const headerAds = document.getElementById('header-ads');
+    if (headerAds) {
+        const firstDiv = headerAds.querySelector('div:first-child');
+        if (firstDiv) {
+            firstDiv.remove();
+        }
     }
+}
+
+function setLocalStorage() {
+    localStorage.setItem("asuraPremiumPromoClosed", Date.now())
+    localStorage.setItem("showPrompt", false)
 }
 
 // Check if the extension is enabled
 chrome.storage.local.get(["enabled"], (result) => {
   if (result.enabled) {
       console.debug("🚀 Add Remover is ACTIVE on AsuraComic!");
+      
+      // Run removal functions immediately
       removeTargetDivs();
       removeHeader();
+      removeHeaderAds();
+      setLocalStorage();
+
+      // Run again after delays to catch late-loading ads
+      setTimeout(() => {
+          removeTargetDivs();
+          removeHeader();
+          removeHeaderAds();
+          console.log("2s")
+      }, 2000);
 
       // Observe new elements being added
-      const observer = new MutationObserver(() => removeTargetDivs());
+      const observer = new MutationObserver(() => {
+          removeTargetDivs();
+          removeHeaderAds();
+      });
       observer.observe(document.body, { childList: true, subtree: true });
+
   } else {
       console.debug("❌ Add Remover is DISABLED.");
   }
