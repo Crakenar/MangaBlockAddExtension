@@ -1,7 +1,7 @@
 {
   "manifest_version": 3,
   "name": "AsuraComic Div Remover",
-  "version": "1.6",
+  "version": "1.7",
   "description": "Removes all Add from on AsuraComic that are fucking annoying.",
   "permissions": ["storage", "scripting", "activeTab"],
   "host_permissions": ["*://asuracomic.net/*", "*://*.asuracomic.net/*"],

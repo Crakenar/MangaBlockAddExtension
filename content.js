@@ -4,7 +4,8 @@ function removeTargetDivs() {
       "jsx-5e69ac27470f8f66",
       "jsx-5216ba0cbfcf980",
       "jsx-24ab88eb6d30d7ed",
-      "relative z-50 overflow-hidden"
+      "relative z-50 overflow-hidden",
+      "backdrop-blur-md"
   ];
 
   targetClasses.forEach(className => {
@@ -43,7 +44,9 @@ function removeHeaderAds() {
 }
 
 function setLocalStorage() {
-    localStorage.setItem("asuraPremiumPromoClosed", Date.now())
+    const currentTimestamp = Date.now().toString();
+    localStorage.setItem("asuraPremiumPromoClosed", currentTimestamp)
+    localStorage.setItem("asuraPremiumTrialClosedG", currentTimestamp)
     localStorage.setItem("showPrompt", false)
 }
 
